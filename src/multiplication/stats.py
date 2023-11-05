@@ -43,13 +43,19 @@ class Statistics:
     def print_stats(self):
         well_known = self.well_known()
         needs_practice = self.needs_practice()
-        print(f"Osszes valasz: {self.all_answers}")
+        print(f"\nOsszes valasz: {self.all_answers}")
         print("Ami jol megy:")
-        for k, v in well_known.items():
-            print(f"{k} : jo:{v.correct_answers}, hibas:{v.wrong_answers}")
-        print("Amit meg gyakorolni kell:")
-        for k, v in needs_practice.items():
-            print(f"{k} : jo:{v.correct_answers}, hibas:{v.wrong_answers}")
+        if len(well_known) == 0:
+            print("-")
+        else:
+            for k, v in well_known.items():
+                print(f"{k} \t jo:{v.correct_answers}, hibas:{v.wrong_answers}")
+        if len(needs_practice) == 0:
+            print("-")
+        else:
+            print("Amit meg gyakorolni kell:")
+            for k, v in needs_practice.items():
+                print(f"{k} \t jo:{v.correct_answers}, hibas:{v.wrong_answers}")
 
 
 if __name__ == '__main__':
