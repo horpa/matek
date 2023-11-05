@@ -1,3 +1,6 @@
+import time
+
+
 class StatItem:
     def __init__(self):
         self.correct_answers = 0
@@ -11,6 +14,8 @@ class Statistics:
         self.storage = {}
         self.minimum_required_correct_answers = minimum_required_correct_answers
         self.all_answers = 0
+        self.start_time = None
+        self.stop_time = None
 
     def add(self, identifier):
         self.storage[identifier] = StatItem()
@@ -43,6 +48,7 @@ class Statistics:
     def print_stats(self):
         well_known = self.well_known()
         needs_practice = self.needs_practice()
+
         print(f"\nOsszes valasz: {self.all_answers}")
         print("Ami jol megy:")
         if len(well_known) == 0:
@@ -56,6 +62,17 @@ class Statistics:
             print("Amit meg gyakorolni kell:")
             for k, v in needs_practice.items():
                 print(f"{k} \t jo:{v.correct_answers}, hibas:{v.wrong_answers}")
+
+        time_diff = 0
+        if self.start_time is not None and self.stop_time is not None:
+            time_diff = self.stop_time - self.start_time
+        print(f"Ennyi ideig tartott: {time_diff:.0f}mp")
+
+    def start(self):
+        self.start_time = time.time()
+
+    def stop(self):
+        self.stop_time = time.time()
 
 
 if __name__ == '__main__':
