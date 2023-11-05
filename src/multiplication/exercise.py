@@ -3,3 +3,7 @@ class MathExercise:
         self.identifier = identifier
         self.question = question
         self.answer = answer
+
+
+if __name__ == '__main__':
+    pass

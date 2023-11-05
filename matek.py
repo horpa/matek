@@ -1,4 +1,4 @@
-import src.multiplication.main as m
+import src.multiplication.practice as p
 
 if __name__ == '__main__':
-    m.practice_multiplication(1, 10, [2])
+    p.practice_multiplication(1, 10, [2])

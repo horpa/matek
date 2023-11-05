@@ -53,13 +53,4 @@ class Statistics:
 
 
 if __name__ == '__main__':
-    # s = Statistics()
-    # for i in range(20):
-    #     s.update_stats(random.randint(100, 200), random.choice([True, False]))
-    #
-    # for i in range(20):
-    #     for k in s.storage:
-    #         s.update_stats(k, random.choice([True, False]))
-    #
-    # s.print_stats()
     pass
