@@ -26,7 +26,7 @@ class Statistics:
 
         if is_correct:
             self.storage[identifier].correct_answers += 1
-            if self.storage[identifier].correct_answers > self.minimum_required_correct_answers and \
+            if self.storage[identifier].correct_answers >= self.minimum_required_correct_answers and \
                     self.storage[identifier].correct_answers > self.storage[identifier].wrong_answers + 5:
                 self.storage[identifier].is_well_known = True
         else:
