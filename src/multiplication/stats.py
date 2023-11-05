@@ -10,12 +10,16 @@ class StatItem:
 
 class Statistics:
 
-    def __init__(self, minimum_required_correct_answers=5):
+    def __init__(self, minimum_required_correct_answers=5, minimum_diff=5):
         self.storage = {}
-        self.minimum_required_correct_answers = minimum_required_correct_answers
         self.all_answers = 0
         self.start_time = None
         self.stop_time = None
+        self.minimum_required_correct_answers = minimum_required_correct_answers
+        if minimum_required_correct_answers < minimum_diff:
+            self.minimum_diff = minimum_required_correct_answers
+        else:
+            self.minimum_diff = minimum_diff
 
     def add(self, identifier):
         self.storage[identifier] = StatItem()
@@ -27,7 +31,8 @@ class Statistics:
         if is_correct:
             self.storage[identifier].correct_answers += 1
             if self.storage[identifier].correct_answers >= self.minimum_required_correct_answers and \
-                    self.storage[identifier].correct_answers > self.storage[identifier].wrong_answers + 5:
+                    self.storage[identifier].correct_answers >= self.storage[identifier].wrong_answers + \
+                    self.minimum_diff:
                 self.storage[identifier].is_well_known = True
         else:
             self.storage[identifier].wrong_answers += 1
