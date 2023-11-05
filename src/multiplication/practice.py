@@ -34,6 +34,7 @@ class Practice:
 def practice_multiplication(range_min=1, range_max=10, base_numbers=None):
     p = Practice(range_min, range_max, base_numbers)
 
+    p.stats.start()
     while p.stats.is_all_known() is False:
         ex = p.new_exercise()
 
@@ -50,6 +51,7 @@ def practice_multiplication(range_min=1, range_max=10, base_numbers=None):
     if p.stats.is_all_known():
         print("✨ Ugyes voltal! ✨")
 
+    p.stats.stop()
     p.print_stats()
 
 
