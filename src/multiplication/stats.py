@@ -49,6 +49,9 @@ class Statistics:
         well_known = self.well_known()
         needs_practice = self.needs_practice()
 
+        if self.is_all_known():
+            print("✨ Ugyes voltal! ✨")
+
         print(f"\nOsszes valasz: {self.all_answers}")
         print("Ami jol megy:")
         if len(well_known) == 0:
@@ -67,6 +70,14 @@ class Statistics:
         if self.start_time is not None and self.stop_time is not None:
             time_diff = self.stop_time - self.start_time
         print(f"Ennyi ideig tartott: {time_diff:.0f}mp")
+
+    @staticmethod
+    def print_correct_answer():
+        print("✅")
+
+    @staticmethod
+    def print_wrong_answer(correct_answer):
+        print(f"❌ ({correct_answer})")
 
     def start(self):
         self.start_time = time.time()

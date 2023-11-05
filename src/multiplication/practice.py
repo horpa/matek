@@ -21,9 +21,6 @@ class Practice:
             for j in range(self.range_min, self.range_max + 1):
                 self.stats.add(multiplication_table.Identifier(i, j))
 
-    def print_stats(self):
-        self.stats.print_stats()
-
     def new_exercise(self):
         potentials = [k for k in self.stats.needs_practice()]
         r = random.choice(potentials)
@@ -43,16 +40,14 @@ def practice_multiplication(range_min=1, range_max=10, base_numbers=None):
             break
 
         if int(i) == ex.answer:
-            print("✅")
+            p.stats.print_correct_answer()
             p.stats.update_stats(ex.identifier, True)
         else:
-            print("❌")
+            p.stats.print_wrong_answer(ex.answer)
             p.stats.update_stats(ex.identifier, False)
-    if p.stats.is_all_known():
-        print("✨ Ugyes voltal! ✨")
 
     p.stats.stop()
-    p.print_stats()
+    p.stats.print_stats()
 
 
 if __name__ == '__main__':
