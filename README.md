@@ -20,3 +20,5 @@ Le kell töltened ezt a "csomagot". Klikkelj a zöld "Code" gombra, és ott vál
 Ha lent van, akkor parancssorból menj be a könyvtárba, ahol a program van, és add ki a következő parancsot:
 - Windows-on: `C:\>python matek.py`
 - Linux-on, Mac-en: `$python3 matek.py`
+
+Ha még azt is mögé írod, hogy *-h* akkor további részleteket tudhatsz meg a paraméterezéséről.
