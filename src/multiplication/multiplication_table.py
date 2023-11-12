@@ -1,6 +1,6 @@
 import inspect
 
-from . import exercise
+from src.util import exercise
 
 
 class Identifier:
@@ -55,5 +55,5 @@ def functions():
     return [f[1] for f in inspect.getmembers(Exercises, predicate=inspect.isfunction)]
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     pass

@@ -1,60 +1,54 @@
 import random
 
-from . import multiplication_table
 from src.util import stats
+from . import roman_mumbers
 
 
 class Practice:
-    def __init__(
-        self,
-        range_min=1,
-        range_max=10,
-        minimum_required_correct_answers=5,
-        base_numbers=None,
-    ):
+    def __init__(self, range_min=1, range_max=20, minimum_required_correct_answers=5):
         self.range_min = range_min
         self.range_max = range_max
-        if base_numbers is not None:
-            self.base_numbers = base_numbers
-        else:
-            self.base_numbers = [2]
         self.__init_stats(minimum_required_correct_answers)
 
     def __init_stats(self, minimum_required_correct_answers):
         self.stats = stats.Statistics(minimum_required_correct_answers)
 
-        for i in self.base_numbers:
-            for j in range(self.range_min, self.range_max + 1):
-                self.stats.add(multiplication_table.Identifier(i, j))
+        for i in range(self.range_min, self.range_max + 1):
+            self.stats.add(i)
 
     def new_exercise(self):
         potentials = [k for k in self.stats.needs_practice()]
         r = random.choice(potentials)
-        fx = random.choice(multiplication_table.functions())
-        return fx(r.x, r.y)
+        fx = random.choice(roman_mumbers.functions())
+        return fx(r)
 
 
-def practice_multiplication(
-    range_min=1, range_max=10, minimum_required_correct_answers=5, base_numbers=None
+def practice_roman_numerals(
+    range_min=1, range_max=20, minimum_required_correct_answers=5
 ):
     if range_min < 1:
         range_min = 1
     if range_max < 1:
         range_max = 1
+    if range_max > 3999:
+        range_max = 3999
     if range_min > range_max:
         range_max = range_min
 
-    p = Practice(range_min, range_max, minimum_required_correct_answers, base_numbers)
+    p = Practice(range_min, range_max, minimum_required_correct_answers)
 
     p.stats.start()
     while p.stats.is_all_known() is False:
         ex = p.new_exercise()
 
         i = input(ex.question)
-        if not i.isdigit():
+        if i == "":
             break
 
-        if int(i) == ex.answer:
+        if not i.isdigit():
+            i = i.upper()
+
+        if i == ex.answer:
             p.stats.print_correct_answer()
             p.stats.update_stats(ex.identifier, True)
         else:

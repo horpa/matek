@@ -9,7 +9,6 @@ class StatItem:
 
 
 class Statistics:
-
     def __init__(self, minimum_required_correct_answers=5, minimum_diff=5):
         self.storage = {}
         self.all_answers = 0
@@ -30,9 +29,12 @@ class Statistics:
 
         if is_correct:
             self.storage[identifier].correct_answers += 1
-            if self.storage[identifier].correct_answers >= self.minimum_required_correct_answers and \
-                    self.storage[identifier].correct_answers >= self.storage[identifier].wrong_answers + \
-                    self.minimum_diff:
+            if (
+                self.storage[identifier].correct_answers
+                >= self.minimum_required_correct_answers
+                and self.storage[identifier].correct_answers
+                >= self.storage[identifier].wrong_answers + self.minimum_diff
+            ):
                 self.storage[identifier].is_well_known = True
         else:
             self.storage[identifier].wrong_answers += 1
@@ -45,10 +47,18 @@ class Statistics:
         return True
 
     def well_known(self):
-        return {key: value for (key, value) in self.storage.items() if value.is_well_known is True}
+        return {
+            key: value
+            for (key, value) in self.storage.items()
+            if value.is_well_known is True
+        }
 
     def needs_practice(self):
-        return {key: value for (key, value) in self.storage.items() if value.is_well_known is False}
+        return {
+            key: value
+            for (key, value) in self.storage.items()
+            if value.is_well_known is False
+        }
 
     def print_stats(self):
         well_known = self.well_known()
@@ -91,5 +101,5 @@ class Statistics:
         self.stop_time = time.time()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     pass

@@ -5,5 +5,5 @@ class MathExercise:
         self.answer = answer
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     pass
